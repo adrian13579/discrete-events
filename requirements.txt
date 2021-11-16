@@ -1,3 +1,12 @@
+click==8.0.3; python_version >= "3.6" \
+    --hash=sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3 \
+    --hash=sha256:410e932b050f5eed773c4cda94de75971c89cdb3155a72a0831139a79e5ecb5b
+colorama==0.4.4; python_version >= "3.6" and python_full_version < "3.0.0" and platform_system == "Windows" or platform_system == "Windows" and python_version >= "3.6" and python_full_version >= "3.5.0" \
+    --hash=sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2 \
+    --hash=sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b
+importlib-metadata==4.8.2; python_version < "3.8" and python_version >= "3.6" \
+    --hash=sha256:53ccfd5c134223e497627b9815d5030edf77d2ed573922f7a0b8f8bb81a1c100 \
+    --hash=sha256:75bdec14c397f528724c1bfd9709d660b33a4d2e77387a3358f20b848bb5e5fb
 numpy==1.21.4; python_version >= "3.7" and python_version < "3.11" \
     --hash=sha256:8890b3360f345e8360133bc078d2dacc2843b6ee6059b568781b15b97acbe39f \
     --hash=sha256:69077388c5a4b997442b843dbdc3a85b420fb693ec8e33020bb24d647c164fa5 \
@@ -63,3 +72,12 @@ pytz==2021.3; python_full_version >= "3.7.1" \
 six==1.16.0; python_full_version >= "3.7.1" \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926
+typer==0.4.0; python_version >= "3.6" \
+    --hash=sha256:d81169725140423d072df464cad1ff25ee154ef381aaf5b8225352ea187ca338 \
+    --hash=sha256:63c3aeab0549750ffe40da79a1b524f60e08a2cbc3126c520ebf2eeaf507f5dd
+typing-extensions==4.0.0; python_version < "3.8" and python_version >= "3.6" \
+    --hash=sha256:829704698b22e13ec9eaf959122315eabb370b0884400e9818334d8b677023d9 \
+    --hash=sha256:2cdf80e4e04866a9b3689a51869016d36db0814d84b8d8a568d22781d45d27ed
+zipp==3.6.0; python_version < "3.8" and python_version >= "3.6" \
+    --hash=sha256:9fe5ea21568a0a70e50f273397638d39b03353731e6cbbb3fd8502a33fec40bc \
+    --hash=sha256:71c644c5369f4a6e07636f0aa966270449561fcea2e3d6747b8d23efaa9d7832
