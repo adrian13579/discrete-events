@@ -29,7 +29,6 @@ def exponential(lam):
 
 
 def normal(mu=5, sigma=2):
-    u = random.uniform(0, 1)
     y1 = 0
     y2 = 0
     while y2 - (((y1 - 1) ** 2) / 2) <= 0:
