@@ -93,16 +93,6 @@ class HappyComputing:
                 self.n -= 1
             else:
                 self.technicians_queue.append(client)
-                if not self.technician_1 and self.technicians_queue:
-                    self.technician_1 = self.technicians_queue.popleft()
-                    self.time_departure_technician_1 = self.time + exponential(1 / 20)
-                if not self.technician_2 and self.technicians_queue:
-                    self.technician_2 = self.technicians_queue.popleft()
-                    self.time_departure_technician_2 = self.time + exponential(1 / 20)
-                if not self.technician_3 and self.technicians_queue:
-                    self.technician_3 = self.technicians_queue.popleft()
-                    self.time_departure_technician_3 = self.time + exponential(1 / 20)
-
                 if not self.specialized_technician and self.technicians_queue:
                     try:
                         self.technicians_queue.remove(3)
@@ -112,6 +102,15 @@ class HappyComputing:
                     self.time_departure_specialized_technician = (
                         self.time + exponential(1 / 15)
                     )
+                if not self.technician_1 and self.technicians_queue:
+                    self.technician_1 = self.technicians_queue.popleft()
+                    self.time_departure_technician_1 = self.time + exponential(1 / 20)
+                if not self.technician_2 and self.technicians_queue:
+                    self.technician_2 = self.technicians_queue.popleft()
+                    self.time_departure_technician_2 = self.time + exponential(1 / 20)
+                if not self.technician_3 and self.technicians_queue:
+                    self.technician_3 = self.technicians_queue.popleft()
+                    self.time_departure_technician_3 = self.time + exponential(1 / 20)
 
             if self.sellers_queue:
                 self.seller_1 = self.sellers_queue.popleft()
@@ -134,6 +133,15 @@ class HappyComputing:
                 self.n -= 1
             else:
                 self.technicians_queue.append(client)
+                if not self.specialized_technician and self.technicians_queue:
+                    try:
+                        self.technicians_queue.remove(3)
+                        self.specialized_technician = 3
+                    except ValueError:
+                        self.specialized_technician = self.technicians_queue.popleft()
+                    self.time_departure_specialized_technician = (
+                        self.time + exponential(1 / 15)
+                    )
                 if not self.technician_1 and self.technicians_queue:
                     self.technician_1 = self.technicians_queue.popleft()
                     self.time_departure_technician_1 = self.time + exponential(1 / 20)
@@ -144,16 +152,6 @@ class HappyComputing:
                     self.technician_3 = self.technicians_queue.popleft()
                     self.time_departure_technician_3 = self.time + exponential(1 / 20)
 
-                if not self.specialized_technician and self.technicians_queue:
-                    try:
-                        self.technicians_queue.remove(3)
-                        self.specialized_technician = 3
-                    except ValueError:
-                        self.specialized_technician = self.technicians_queue.popleft()
-                    self.time_departure_specialized_technician = (
-                        self.time + exponential(1 / 15)
-                    )
-
             if self.sellers_queue:
                 self.seller_2 = self.sellers_queue.popleft()
                 self.time_departure_seller_2 = self.time + normal(5, 2)
@@ -161,6 +159,28 @@ class HappyComputing:
                 self.seller_2 = 0
                 self.time_departure_seller_2 = float("inf")
 
+        if self.state() == self.time_departure_specialized_technician and (
+            self.time_departure_specialized_technician <= self.T or self.n > 0
+        ):
+
+            self.time = self.time_departure_specialized_technician
+            client = self.specialized_technician
+            self.profits += self.cost[client]
+            self.departure_count += 1
+            self.departure[self.departure_count] = self.time
+            self.n -= 1
+
+            if self.technicians_queue:
+                try:
+                    self.technicians_queue.remove(3)
+                    self.specialized_technician = 3
+                except ValueError:
+                    self.specialized_technician = self.technicians_queue.popleft()
+                self.time_departure_specialized_technician = self.time + exponential(
+                    1 / 15
+                )
+            else:
+                self.time_departure_specialized_technician = float("inf")
         if self.state() == self.time_departure_technician_1 and (
             self.time_departure_technician_1 <= self.T or self.n > 0
         ):
@@ -217,26 +237,3 @@ class HappyComputing:
             else:
                 self.technician_3 = 0
                 self.time_departure_technician_3 = float("inf")
-
-        if self.state() == self.time_departure_specialized_technician and (
-            self.time_departure_specialized_technician <= self.T or self.n > 0
-        ):
-
-            self.time = self.time_departure_specialized_technician
-            client = self.specialized_technician
-            self.profits += self.cost[client]
-            self.departure_count += 1
-            self.departure[self.departure_count] = self.time
-            self.n -= 1
-
-            if self.technicians_queue:
-                try:
-                    self.technicians_queue.remove(3)
-                    self.specialized_technician = 3
-                except ValueError:
-                    self.specialized_technician = self.technicians_queue.popleft()
-                self.time_departure_specialized_technician = self.time + exponential(
-                    1 / 15
-                )
-            else:
-                self.time_departure_specialized_technician = float("inf")
